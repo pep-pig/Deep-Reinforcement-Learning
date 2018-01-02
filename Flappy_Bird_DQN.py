@@ -218,8 +218,8 @@ def trainNetwork(s, readout, h_fc1, sess):
         s_t = s_t1
         t += 1
 
-        # 每进行10000次迭代，保留一下网络参数
-        if t % 10000 == 0:
+        # 每进行100000次迭代，保留一下网络参数
+        if t % 100000 == 0:
             saver.save(sess, 'saved_networks/' + GAME + '-dqn', global_step=t)
 
         # 打印游戏信息
@@ -243,4 +243,11 @@ def playGame():
 
 
 if __name__ == "__main__":
-    playGame()
+    #playGame()
+    reader = tf.train.NewCheckpointReader('saved_networks/bird-dqn-2400000')
+
+    #获取所有变量的名称以及维度信息，这个程序中没有设置变量名称，所以要先获取一下系统取的变量是什么
+    all_variables = reader.get_variable_to_shape_map()
+    #获取你想要的张量
+    w1 = reader.get_tensor("Variable_6/Adam_1")
+    print(w1)
