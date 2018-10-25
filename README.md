@@ -1,4 +1,4 @@
-# deep_reinforcement_learning
+# Deep Reinforcement Learning
 1.强化学习中有四个关键量:<X,A,R,P>
       X:状态空间
       A：动作空间
